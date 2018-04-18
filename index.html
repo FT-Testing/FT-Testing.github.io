@@ -1,0 +1,54 @@
+<!--
+
+* Freedom Transit Busline Real-Time GPS Tracking Page
+* Developed by Jordan Bechek
+* Designed and styled by Chris Frydryck
+* Project by Michael Mann, Chris Frydryck, and Jordan Bechek of Washington & Jefferson College, 2018
+
+* File: index.html
+
+* Notes:
+   - Page should be disabled on Sunday since no busses will be out
+   - Last updated: 4/9/18
+
+-->
+
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Bus Tracker</title>
+
+      <!-- JQuery source: https://code.jquery.com/jquery-3.3.1.min.js -->
+    	<script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
+
+      <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Lato:300" rel="stylesheet">
+      <link rel="stylesheet" type="text/css" href="main.css">
+
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+
+   <body>
+      <div id="title">
+         <h2>Freedom Transit Real-Time Bus Tracker</h2>
+         <h3>[Status: Alpha]</h3>
+      </div>
+
+    	<div id="menu">
+    		<div id="metroWeekday" class="menuItem" style="font-weight: bold">Metro Commuter (Weekday)</div>
+    		<div id="metroWeekend" class="menuItem" style="font-weight: bold">Metro Commuter (Saturday)</div>
+         <div id="countyLine" class="menuItem">County Line</div>
+         <div id="localA" class="menuItem">Local A</div>
+         <div id="localB" class="menuItem">Local B</div>
+         <div id="localSat" class="menuItem">Local (Saturday)</div>
+    	</div>
+
+    	<div id="map"></div>
+
+      <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+      <script src="js/paths.js" type="text/javascript"></script>
+    	<script src="js/main.js" type="text/javascript"></script>
+    	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvMaNqvquJfPInbnuFl5MUO5-iQz-QJXQ&callback=initMap"
+       type="text/javascript"></script>
+   </body>
+</html>

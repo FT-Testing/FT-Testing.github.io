@@ -1,0 +1,324 @@
+/*
+
+* Freedom Transit Busline Real-Time GPS Tracking Page
+* Developed by Jordan Bechek
+* Designed and styled by Chris Frydryck
+* Project by Michael Mann, Chris Frydryck, and Jordan Bechek of Washington & Jefferson College, 2018
+
+* File: main.css
+
+* Notes:
+   - Page should be disabled on Sunday since no busses will be out
+   - Last updated: 4/9/18
+
+*/
+
+html {
+	margin: 0 auto;
+	font-family: 'Lato', sans-serif;
+}
+
+
+body {
+    line-height: 10px;
+    background-color: #F1F1F1;
+    margin: 0 2.5%;
+    font-family: 'Lato', sans-serif;
+}
+
+h3, h2 {
+    margin-top: 5px;
+    font-family: 'Lato', sans-serif;
+}
+
+#title h3{
+	color: red;
+}
+
+#map {
+	height: 500px;
+	width: 65%;
+	border-radius: 5px;
+	top: 15px;
+
+}
+
+#menu {
+	height: 470px;
+	width: 30%;
+	top: 80px;
+	right: 2.5%;
+	position: absolute;
+	background-color: none;
+	line-height: 5px;
+	border-radius: 5px;
+}
+
+.menuItem {
+	padding: 20px;
+	background-color: #d57f2a;
+	margin-top: 10px;
+	color: white;
+	font-family: 'Lato', sans-serif;
+}
+
+.menuItem:not(.clickable) {
+    color: #b0b0b0;
+    cursor: not-allowed;
+  	display: none;          /* UNcomment THIS LINE AFTER TESTING */
+}
+
+.menuItem.clickable:hover {
+	cursor: pointer;
+}
+
+#title {
+    margin-top: 20px;
+}
+
+
+#metroWeekday {
+	/*background-color: #D66C04;
+	border-left: 7px solid #8D5300;*/
+
+
+    -webkit-transition: all .4s; /* For Safari 3.1 to 6.0 */
+	transition: all .4s;
+	margin-top: 15px;
+	padding-top: 30px;
+	padding-bottom: 30px;
+
+}
+
+#metroWeekday:hover {
+	border-left: 7px solid #8D5300 !important;
+
+}
+
+#metroWeekend {
+	/*background-color: #D66C04;
+	border-left: 7px solid #8D5300;*/
+
+	margin-top: 10px;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	transition: all .4s;
+	-webkit-transition: all .4s; /* For Safari 3.1 to 6.0 */
+	/*border-left: 7px solid white;*/
+
+}
+
+#metroWeekend:hover {
+	border-left: 7px solid #8D5300 !important;
+}
+
+
+#countyLine {
+	margin-top: 10px;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	transition: all .4s;
+	-webkit-transition: all .4s; /* For Safari 3.1 to 6.0 */
+	/*border-left: 7px solid white;*/
+}
+
+#countyLine:hover {
+	border-left: 7px solid #8D5300 !important;
+}
+
+#localA {
+	margin-top: 10px;
+	padding-top: 30px;
+	padding-bottom: 30px;
+    -webkit-transition: all .4s; /* For Safari 3.1 to 6.0 */
+	/*border-left: 7px solid white;*/
+}
+
+#localA:hover{
+	border-left: 7px solid #8D5300 !important;
+}
+
+#localB {
+	margin-top: 10px;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	transition: all .4s;
+	-webkit-transition: all .4s; /* For Safari 3.1 to 6.0 */
+	/*border-left: 7px solid white;*/
+
+}
+
+#localB:hover{
+	border-left: 7px solid #8D5300 !important;
+}
+
+#localSat {
+	margin-top: 10px;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	transition: all .4s;
+	-webkit-transition: all .4s; /* For Safari 3.1 to 6.0 */
+	/*border-left: 7px solid white;*/
+
+}
+
+#localSat:hover{
+	border-left: 7px solid #8D5300 !important;
+}
+
+
+
+
+@media only screen and (max-width: 850px) and (min-width: 481px) {
+  
+    #map{
+    	width: 100%;
+    	height: 350px;
+    }
+
+    #menu{
+    	
+    	top: 435px;
+    	left: 2.5%;
+    	width: 95%;
+
+    }
+
+
+	}
+
+
+
+@media only screen and (max-width: 480px) and (min-width: 10px){
+
+	#title{
+		margin-top: 5px;
+	}	
+
+	#title h2 {
+		font-size: 1em;
+	}
+
+	#title h3 {
+		font-size: .85em;
+		
+	}
+
+	 #map{
+    	width: 100%;
+    	height: 350px;
+    }
+
+    #menu{
+    	  display: flex;
+  		flex-wrap: wrap;
+ 		 align-content: flex-start;
+ 		 justify-content: center;
+ 		
+  		height: auto;
+    	top: 415px;
+    	left: 0%;
+    	right: 0%;
+    	width: 100%;
+    	line-height: 20px;
+
+
+    }
+
+   
+
+
+    .menuItem{
+    	margin-right: 2%;
+    	width: 36.5%;
+    	height: 100px;
+
+    }
+
+    #metroWeekday {
+	background-color: #D66C04;
+	border-left: 0px solid #8D5300;
+
+
+    -webkit-transition: all .4s; /* For Safari 3.1 to 6.0 */
+	transition: all .4s;
+	margin-top: 10px;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	}
+
+
+    #metroWeekday:hover {
+		border-left: 0px solid #8D5300 !important;
+
+	}
+	#metroWeekend:hover {
+		border-left: 0px solid #8D5300 !important;
+	}
+
+	#countyLine:hover {
+		border-left: 0px solid #8D5300 !important;
+	}
+
+	#localA:hover{
+		border-left: 0px solid #8D5300 !important;
+	}
+	#localB:hover{
+		border-left: 0px solid #8D5300 !important;
+	}
+
+	#localSat:hover{
+		border-left: 0px solid #8D5300 !important;
+	}
+}
+
+@media only screen and (max-width: 347px) and (min-width: 10px){
+
+	#menu{
+    	 display: flex;
+  		flex-wrap: wrap;
+ 		 align-content: flex-start;
+ 		 justify-content: center;
+ 		
+  		height: auto;
+    	top: 340px;
+    	left: 0%;
+    	right: 0%;
+    	width: 100%;
+    	line-height: 5px;
+    }
+
+     #map{
+    	width: 100%;
+    	height: 275px;
+    }
+
+    .menuItem{
+    	margin-right: 2%;
+    	width: 100%;
+    	height: 50px;
+    }
+}
+
+#invalidTimeMessage {
+	color: red;
+	font-size: large;
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	font-family: 'Lato', sans-serif;
+}
+
+#invalidTimeMessage a {
+	color: red;
+}
+
+#invalidTimeDiv {
+	background-color: rgba(255, 255, 255, 0.85);
+	text-align: center;
+
+	/*-webkit-backdrop-filter: blur(5px);
+    -backdrop-filter: blur(5px);
+    filter: saturate(100%);*/
+}
