@@ -366,3 +366,10 @@ $(".menuItem.clickable").on("click", function() {
       initMap("yes", routeInfo[5].path, 13, {lat: 40.176, lng: -80.25});
    }
 });
+
+// remove tile side borders if window is shrunk past a width of 480 pixels
+$(window).on("resize", function() {
+   if($(this).width() <= 480) {
+      $(".menuItem").css("border-left", "0px");
+   }
+});
