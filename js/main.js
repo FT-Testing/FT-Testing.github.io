@@ -48,11 +48,17 @@ var firstShow = true;
 (day === 6) ? currRoute = 1 : currRoute = 0;
 
 // add default style if using device with window width higher than 480 pixels
-if($(window).width() > 480) {
-   if(currRoute === 0) {
-      $("#metroWeekday").css("border-left", "7px solid #8D5300").css("background-color", "#D66C04");
-   } else if(currRoute === 1) {
-      $("#metroWeekend").css("border-left", "7px solid #8D5300").css("background-color", "#D66C04");
+if(currRoute === 0) {
+   $("#metroWeekday").css("background-color", "#D66C04");
+
+   if($(window).width() > 480) {
+      $("#metroWeekday").css("border-left", "7px solid #8D5300");
+   }
+} else if(currRoute === 1) {
+   $("#metroWeekend").css("background-color", "#D66C04");
+
+   if($(window).width() > 480) {
+      $("#metroWeekend").css("border-left", "7px solid #8D5300");
    }
 }
 
