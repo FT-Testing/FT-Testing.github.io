@@ -1,18 +1,3 @@
-/*
-
-* Freedom Transit Busline Real-Time GPS Tracking Page
-* Developed by Jordan Bechek
-* Designed and styled by Chris Frydryck
-* Project by Michael Mann, Chris Frydryck, and Jordan Bechek of Washington & Jefferson College, 2018
-
-* File: main.css
-
-* Notes:
-   - Page should be disabled on Sunday since no busses will be out
-   - Last updated: 4/9/18
-
-*/
-
 html {
 	margin: 0 auto;
 	font-family: 'Lato', sans-serif;
@@ -44,6 +29,7 @@ h3, h2 {
 }
 
 #menu {
+
 	height: 470px;
 	width: 30%;
 	top: 80px;
@@ -60,17 +46,20 @@ h3, h2 {
 	margin-top: 10px;
 	color: white;
 	font-family: 'Lato', sans-serif;
+	height: 5px;
 }
 
 .menuItem:not(.clickable) {
     color: #b0b0b0;
     cursor: not-allowed;
-  	display: none;          /* UNcomment THIS LINE AFTER TESTING */
+  display: none;          UNcomment THIS LINE AFTER TESTING */
 }
 
 .menuItem.clickable:hover {
 	cursor: pointer;
 }
+
+
 
 #title {
     margin-top: 20px;
@@ -78,8 +67,8 @@ h3, h2 {
 
 
 #metroWeekday {
-	/*background-color: #D66C04;
-	border-left: 7px solid #8D5300;*/
+	background-color: #D66C04;
+	border-left: 7px solid #8D5300;
 
 
     -webkit-transition: all .4s; /* For Safari 3.1 to 6.0 */
@@ -96,9 +85,6 @@ h3, h2 {
 }
 
 #metroWeekend {
-	/*background-color: #D66C04;
-	border-left: 7px solid #8D5300;*/
-
 	margin-top: 10px;
 	padding-top: 30px;
 	padding-bottom: 30px;
@@ -126,6 +112,7 @@ h3, h2 {
 	border-left: 7px solid #8D5300 !important;
 }
 
+
 #localA {
 	margin-top: 10px;
 	padding-top: 30px;
@@ -137,6 +124,7 @@ h3, h2 {
 #localA:hover{
 	border-left: 7px solid #8D5300 !important;
 }
+
 
 #localB {
 	margin-top: 10px;
@@ -166,6 +154,7 @@ h3, h2 {
 	border-left: 7px solid #8D5300 !important;
 }
 
+
 .calContainter {
   position: relative;
   width: 55px;
@@ -185,43 +174,14 @@ h3, h2 {
 
 }
 
-.doubleLineCal{
-  position: relative;
-  width: 55px;
-  height: 45.5px;
-  margin-top: -34.75px;
-  padding-top: 20px;
-  padding-left: 20px;
-  margin-left: 100%;
-  margin-right: -20px;
-  /*background-color: #f1f1f1;
-  border-radius: 50%;*/
-  transition: .75s;
-  -webkit-transition: .75s; /* Safari */
-  z-index: 10;
-  opacity: 1;
-  float: right;
-
-}
-
-
-
 .calContainter:hover {
   background-color: #f1f1f1;
   /*box-shadow: inset 0 0 0 3px #E3A363;*/
-}
-
-.doubleLineCal:hover{
-	background-color: #f1f1f1;
+  
+  
 }
 
 .calContainter:hover .fullCalendar {
-  fill: #E3A363;
-  transform: scale(.8);
-  animation: bounce 1s  ease-in alternate infinite;
-}
-
-.doubleLineCal:hover .fullCalendar{
   fill: #E3A363;
   transform: scale(.8);
   animation: bounce 1s  ease-in alternate infinite;
@@ -250,7 +210,7 @@ h3, h2 {
 
 
 
-@media only screen and (max-width: 950px) and (min-width: 481px) {
+@media only screen and (max-width: 900px) and (min-width: 481px) {
   
     #map{
     	width: 100%;
@@ -266,7 +226,7 @@ h3, h2 {
     }
 
 
-	}
+}
 
 
 
@@ -326,7 +286,11 @@ h3, h2 {
 	margin-top: 10px;
 	padding-top: 30px;
 	padding-bottom: 30px;
-	}
+
+
+
+
+}
 
 
     #metroWeekday:hover {
@@ -352,17 +316,18 @@ h3, h2 {
 		border-left: 0px solid #8D5300 !important;
 	}
 
+
 .calContainter {
   position: absolute;
-  width: 43.5px;
+  width: 55px;
   height: 45.5px;
-  margin-top: 40px;
-  padding-top: 15px;
-  padding-left: 17px;
-  margin-left: 0%;
+  margin-top: 30px;
+  padding-top: 20px;
+  padding-left: 20px;
+  margin-left: -5%;
   margin-right: -20px;
-  background-color: #f1f1f1;
-  border-radius: 50%;
+  /*background-color: #f1f1f1;
+  border-radius: 50%;*/
   transition: .75s;
   -webkit-transition: .75s; /* Safari */
   z-index: 10;
@@ -370,34 +335,10 @@ h3, h2 {
   float: left;
 
 }
-
-.doubleLineCal{
- position: absolute;
-  width: 43.5px;
-  height: 45.5px;
-  margin-top: 20px;
-  padding-top: 15px;
-  padding-left: 17px;
-  margin-left: 0%;
- 
-  background-color: #F1F1F1;
-  border-radius: 50%;
-  transition: .75s;
-  -webkit-transition: .75s; /* Safari */
-  z-index: 10;
-  opacity: 1;
-  float: left;
-}
-
-
 
 .calContainter:hover {
  	background-color: transparent;
     
-}
-
-.doubleLineCal:hover {
-	background-color: transparent;
 }
 
 .calContainter:hover .fullCalendar {
@@ -406,19 +347,11 @@ h3, h2 {
   animation: none;
 }
 
-.doubleLineCal:hover .fullCalendar {
-	fill: white;
-	transform: none;
-	animation: none;
+
+  
 }
 
-.fullCalendar{
-	fill: #d57f2a;
-}
-
-}
-
-@media only screen and (max-width: 348px) and (min-width: 10px){
+@media only screen and (max-width: 347px) and (min-width: 10px){
 
 	#menu{
     	 display: flex;
@@ -432,6 +365,8 @@ h3, h2 {
     	right: 0%;
     	width: 100%;
     	line-height: 5px;
+
+
     }
 
      #map{
@@ -439,10 +374,14 @@ h3, h2 {
     	height: 275px;
     }
 
+   
+
+
     .menuItem{
     	margin-right: 2%;
     	width: 100%;
     	height: 50px;
+
     }
 
     .calContainter {
@@ -454,8 +393,8 @@ h3, h2 {
 	  padding-left: 20px;
 	  margin-left: -5%;
 	  margin-right: -20px;
-	  background-color: transparent;
-	  /*border-radius: 50%;*/
+	  /*background-color: #f1f1f1;
+	  border-radius: 50%;*/
 	  transition: .75s;
 	  -webkit-transition: .75s; /* Safari */
 	  z-index: 10;
@@ -464,50 +403,5 @@ h3, h2 {
 
 	}
 
-	.doubleLineCal{
-		
-	  position: absolute;
-	  width: 55px;
-	  height: 45.5px;
-	  margin-top: 5px;
-	  padding-top: 20px;
-	  padding-left: 20px;
-	  margin-left: -5%;
-	  margin-right: -20px;
-	  background-color: transparent;
-	 /* border-radius: 50%;*/
-	  transition: .75s;
-	  -webkit-transition: .75s; /* Safari */
-	  z-index: 10;
-	  opacity: 1;
-	  float: right;
-	}
-	.fullCalendar{
-		fill: #f1f1f1;
-	}
 
-}
-
-#invalidTimeMessage {
-	color: red;
-	font-size: large;
-	padding-left: 5px;
-	padding-right: 5px;
-	padding-top: 2px;
-	padding-bottom: 2px;
-	font-family: 'Lato', sans-serif;
-}
-
-#invalidTimeMessage a {
-	color: red;
-}
-
-#invalidTimeDiv {
-	background-color: rgba(255, 255, 255, 0.85);
-	text-align: center;
-
-	/*-webkit-backdrop-filter: blur(5px);
-    -backdrop-filter: blur(5px);
-    filter: saturate(100%);*/
-	
 }
