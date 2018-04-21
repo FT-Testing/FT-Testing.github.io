@@ -4,31 +4,33 @@
 * Developed by Jordan Bechek
 * Designed and styled by Chris Frydryck
 * Project by Michael Mann, Chris Frydryck, and Jordan Bechek of Washington & Jefferson College, 2018
-
 * File: main.js
-
 * Notes:
    - Page should be disabled on Sunday since no busses will be out
-   - Last updated: 4/9/18
+   - Last updated: 4/21/18
 
 */
 
-// routeInfo array defined in paths.js - {name, startTime, endTime, link, path}
+// routeInfo[] defined in paths.js - {name, startTime, endTime, subRouteInfo[], link, path}
 
-var date = new Date();        // date object
-var day = date.getDay();      // get day of week
-var time = date.getHours();   // get hour of day
+var date = new Date();           // date object
+var day = date.getDay();         // get day of week
+var hour = date.getHours();      // get hour of day
+var minute = date.getMinutes();  // get minutes of hour
 
 // test weekend function
-// day = 6;
+// day = 3;
 
 // test time constraints
-// time = 1;
+// hour = 14;
 
 // create icon set
 var icons = {
    freedom_bus: {
       icon: "img/bus.png"
+   },
+   blank_bus: {
+      icon: "img/blank.png"
    }
 };
 
@@ -44,6 +46,18 @@ var firstShow = true;
 
 // default current route to appropriate Metro Commuter route
 (day === 6) ? currRoute = 1 : currRoute = 0;
+
+// add default style if using device with window width higher than 480 pixels
+if($(window).width() > 480) {
+   if(currRoute === 0) {
+      $("#metroWeekday").css("border-left", "7px solid #8D5300").css("background-color", "#D66C04");
+   } else if(currRoute === 1) {
+      $("#metroWeekend").css("border-left", "7px solid #8D5300").css("background-color", "#D66C04");
+   }
+}
+
+// set date on calendar icon
+$(".calDate").html(date.getUTCDate());
 
 // if today is Saturday, enable Metro Commuter (Weekend) and Local (Saturday)
 // if today is not Saturday, enable Metro Commuter (Weekday), County Line, 
@@ -156,7 +170,10 @@ function updateBusses() {
 
    // get instance of locations/ from firebase
    var location = database.ref('locations/');
-   var lat, lng, marker, key, index;
+   var lat, lng, marker, key, index, routeNum, subRouteNum;
+
+   // array of bus IDs in database to check against busses[]
+   var dbBusRef = [];
 
    // get snapshot of locations/ to cycle through children (busses)
    location.once("value", function(snapshot) {
@@ -165,14 +182,20 @@ function updateBusses() {
          // save bus id
          key = parseInt(childSnapshot.key);
 
+         // add ID
+         dbBusRef.push(key);
+
          // cycle through grandchildren (bus attributes (lat, lng, speed, etc.)) to save lat and lng
          childSnapshot.forEach(function(grandchildSnapshot) {
             (grandchildSnapshot.key === "latitude") ? lat = grandchildSnapshot.val() : lat = lat;
             (grandchildSnapshot.key === "longitude") ? lng = grandchildSnapshot.val() : lng = lng;
          });
 
+         // get route from tablet's ID
+         routeNum = (Math.floor(key/1000))-1;
+
          // check if current bus is on the user-selected route
-         if((Math.floor(key/1000))-1 === currRoute) {
+         if(routeNum === currRoute) {
 
             // get array index of this bus, returns -1 if not in the array
             index = busses.findIndex(x => x.id === key);
@@ -183,36 +206,67 @@ function updateBusses() {
                // console.log("first show: " + firstShow);
 
                // check if this bus has moved since the last refresh; if firstShow, add regardless
-               if(firstShow || (Math.abs(busses[index].lat - lat) > 0.00001 || Math.abs(busses[index].lng - lng) > 0.00001)) {
+               if(firstShow || (Math.abs(busses[index].lat - lat) > 0.00001 || 
+                  Math.abs(busses[index].lng - lng) > 0.00001)) {
 
                   // remove marker
                   busses[index].marker.setMap(null);
 
                   // create new marker
+                  if(currRoute === 0 || currRoute === 2) {
+                     marker = new google.maps.Marker({
+                        position: {lat: lat, lng: lng},
+                        map: map,
+                        icon: icons["blank_bus"].icon,
+                        label: {
+                           text: getLabel(key),
+                           fontSize: "15px",
+                           fontWeight: "bold"
+                        }
+                     });
+                  } else {
+                     marker = new google.maps.Marker({
+                        position: {lat: lat, lng: lng},
+                        map: map,
+                        icon: icons["freedom_bus"].icon
+                     });
+                  }
+
+                  // replace bus object
+                  busses[index] = {id: key, route: routeNum, marker: marker, lat: lat, lng: lng};
+               }
+            } else {
+               if(currRoute === 0 || currRoute === 2) {
+                  marker = new google.maps.Marker({
+                     position: {lat: lat, lng: lng},
+                     map: map,
+                     icon: icons["blank_bus"].icon,
+                     label: {
+                        text: getLabel(key),
+                        fontSize: "15px",
+                        fontWeight: "bold"
+                     }
+                  });
+               } else {
                   marker = new google.maps.Marker({
                      position: {lat: lat, lng: lng},
                      map: map,
                      icon: icons["freedom_bus"].icon
                   });
-
-                  // replace bus object
-                  busses[index] = {id: key, route: (Math.floor(key/1000))-1, marker: marker, lat: lat, lng: lng};
                }
-            } else {
-               marker = new google.maps.Marker({
-                  position: {lat: lat, lng: lng},
-                  map: map,
-                  icon: icons["freedom_bus"].icon
-               });
 
                // add bus object
-               busses.push({id: key, route: (Math.floor(key/1000))-1, marker: marker, lat: lat, lng: lng});
+               busses.push({id: key, route: routeNum, marker: marker, lat: lat, lng: lng});
             }
          }
       });
 
       firstShow = false;
       // console.log("refreshed");
+
+      updateBusArray(dbBusRef);
+      // console.log("dbBusRef: " + dbBusRef);
+      // console.log("busses: " + busses);
    });
 }
 
@@ -220,8 +274,51 @@ function updateBusses() {
 function validTimeCheck() {
 
    // check if current time is within route constraints; time invalid regardless if today is Sunday
-   if((time > routeInfo[currRoute].startTime && time < routeInfo[currRoute].endTime) && day !== 0) {
+   if((hour > routeInfo[currRoute].startTime && hour < routeInfo[currRoute].endTime) && day !== 0) {
       return true;
+   }
+}
+
+// determine label for bus (non-local routes only)
+function getLabel(id) {
+   var label;
+
+   // get second integer of ID; this is the subroute ID
+   var x = Math.floor(id/(Math.pow(10, Math.floor(Math.log(id)/Math.log(10))-1)));
+   var subRoute = x-Math.floor(x/10)*10;
+
+   // calculate minutes since midnight
+   var totalMinutes = minute + hour*60;
+
+   for(var i = 0; i < routeInfo[currRoute].subRouteInfo[subRoute].labels.length; i++) {
+      if(totalMinutes >= routeInfo[currRoute].subRouteInfo[subRoute].labels[i].startTime && 
+         totalMinutes <= routeInfo[currRoute].subRouteInfo[subRoute].labels[i].endTime) {
+
+         return routeInfo[currRoute].subRouteInfo[subRoute].labels[i].id;
+      }
+   }
+}
+
+// purge busses from array that are no longer in the database
+function updateBusArray(ref) {
+   if(ref.length !== busses.length) {
+      var match = false;
+
+      for(var i = 0; i < busses.length; i++) {
+         match = false;
+
+         for(var k = 0; k < ref.length; k++) {
+            if(busses[i].id === ref[k]) {
+               match = true;
+               break;
+            }
+         }
+
+         if(!match) {
+            busses[i].marker.setMap(null);
+            busses.splice(i, 1);
+         }
+      }
    }
 }
 
@@ -263,11 +360,3 @@ $(".menuItem.clickable").on("click", function() {
       initMap("yes", routeInfo[5].path, 13, {lat: 40.176, lng: -80.25});
    }
 });
-
-if($(window).width() > 480) {
-   if(currRoute === 0) {
-      $("#metroWeekday").css("border-left", "7px solid #8D5300").css("background-color", "#D66C04");
-   } else if(currRoute === 1) {
-      $("#metroWeekend").css("border-left", "7px solid #8D5300").css("background-color", "#D66C04");
-   }
-}
