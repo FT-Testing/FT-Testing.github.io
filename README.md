@@ -16,4 +16,4 @@ Firebase at scheduled intervals.
 I was built by a team of students at [Washington & Jefferson College](http://www.washjeff.edu/).
 
 **Developed by Jordan Bechek**<br>
-**Designed and styled by Chris Frydrick**
+**Designed and styled by Christopher Frydryck**
