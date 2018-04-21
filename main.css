@@ -1,3 +1,18 @@
+/*
+
+* Freedom Transit Busline Real-Time GPS Tracking Page
+* Developed by Jordan Bechek
+* Designed and styled by Chris Frydryck
+* Project by Michael Mann, Chris Frydryck, and Jordan Bechek of Washington & Jefferson College, 2018
+
+* File: main.css
+
+* Notes:
+   - Page should be disabled on Sunday since no busses will be out
+   - Last updated: 4/9/18
+
+*/
+
 html {
 	margin: 0 auto;
 	font-family: 'Lato', sans-serif;
@@ -29,7 +44,6 @@ h3, h2 {
 }
 
 #menu {
-
 	height: 470px;
 	width: 30%;
 	top: 80px;
@@ -46,20 +60,17 @@ h3, h2 {
 	margin-top: 10px;
 	color: white;
 	font-family: 'Lato', sans-serif;
-	height: 5px;
 }
 
 .menuItem:not(.clickable) {
     color: #b0b0b0;
     cursor: not-allowed;
-  display: none;          UNcomment THIS LINE AFTER TESTING */
+  	display: none;          /* UNcomment THIS LINE AFTER TESTING */
 }
 
 .menuItem.clickable:hover {
 	cursor: pointer;
 }
-
-
 
 #title {
     margin-top: 20px;
@@ -67,8 +78,8 @@ h3, h2 {
 
 
 #metroWeekday {
-	background-color: #D66C04;
-	border-left: 7px solid #8D5300;
+	/*background-color: #D66C04;
+	border-left: 7px solid #8D5300;*/
 
 
     -webkit-transition: all .4s; /* For Safari 3.1 to 6.0 */
@@ -85,6 +96,9 @@ h3, h2 {
 }
 
 #metroWeekend {
+	/*background-color: #D66C04;
+	border-left: 7px solid #8D5300;*/
+
 	margin-top: 10px;
 	padding-top: 30px;
 	padding-bottom: 30px;
@@ -112,7 +126,6 @@ h3, h2 {
 	border-left: 7px solid #8D5300 !important;
 }
 
-
 #localA {
 	margin-top: 10px;
 	padding-top: 30px;
@@ -124,7 +137,6 @@ h3, h2 {
 #localA:hover{
 	border-left: 7px solid #8D5300 !important;
 }
-
 
 #localB {
 	margin-top: 10px;
@@ -159,9 +171,10 @@ h3, h2 {
   position: relative;
   width: 55px;
   height: 45.5px;
-  margin-top: -34.75px;
-  padding-top: 20px;
-  padding-left: 20px;
+  margin-top: -35px;
+  padding-top: 15px;
+  padding-bottom: 6px;
+  padding-left: 15px;
   margin-left: 100%;
   margin-right: -20px;
   /*background-color: #f1f1f1;
@@ -174,12 +187,12 @@ h3, h2 {
 
 }
 
+
 .calContainter:hover {
   background-color: #f1f1f1;
-  /*box-shadow: inset 0 0 0 3px #E3A363;*/
-  
-  
+ 
 }
+
 
 .calContainter:hover .fullCalendar {
   fill: #E3A363;
@@ -187,16 +200,45 @@ h3, h2 {
   animation: bounce 1s  ease-in alternate infinite;
 }
 
+.calContainter:hover .calDate{
+        color: #f1f1f1;
+        animation: bounceDate 1s ease-in alternate infinite;
+        transform: scale(.7);
+        
+        
+}
+
 
 .fullCalendar {
   position: relative;
-  width: 60%;
-  height: 60%;
+  width: 80%;
+  height: 80%;
   fill: #f1f1f1;
   -webkit-transition: .75s; /* Safari */
   transition: .75s;
 }
 
+.calDate {
+        z-index: 2;
+        min-width: 30px;
+        position: absolute;
+        font-family: Rubik, sans-serif;
+        font-size: 1em;
+        margin-top: -15px;
+        margin-left: 7.25px;
+        color: #d57f2a;
+        /*background-color: blue;*/
+        position: center;
+        text-align: center;
+        transition: .75s;
+        -webkit-transition: .75s;
+        
+        
+      -webkit-user-select: none; /* Safari */        
+      -moz-user-select: none; /* Firefox */
+      -ms-user-select: none; /* IE10+/Edge */
+      user-select: none; /* Standard */
+      }
 
 
 @keyframes bounce{
@@ -208,9 +250,18 @@ h3, h2 {
 }
 
 
+@keyframes bounceDate{
+  0%{
+    top: 50px;
+  }100%{
+    top: 65px;
+  }
+}
 
 
-@media only screen and (max-width: 900px) and (min-width: 481px) {
+
+
+@media only screen and (max-width: 950px) and (min-width: 481px) {
   
     #map{
     	width: 100%;
@@ -226,7 +277,7 @@ h3, h2 {
     }
 
 
-}
+	}
 
 
 
@@ -286,11 +337,7 @@ h3, h2 {
 	margin-top: 10px;
 	padding-top: 30px;
 	padding-bottom: 30px;
-
-
-
-
-}
+	}
 
 
     #metroWeekday:hover {
@@ -319,15 +366,15 @@ h3, h2 {
 
 .calContainter {
   position: absolute;
-  width: 55px;
-  height: 45.5px;
-  margin-top: 30px;
-  padding-top: 20px;
-  padding-left: 20px;
-  margin-left: -5%;
+  width: 44.5px;
+  height: 40.5px;
+  margin-top: 40px;
+  padding-top: 15px;
+  padding-left: 13px;
+  margin-left: 0%;
   margin-right: -20px;
-  /*background-color: #f1f1f1;
-  border-radius: 50%;*/
+  background-color: #f1f1f1;
+  border-radius: 50%;
   transition: .75s;
   -webkit-transition: .75s; /* Safari */
   z-index: 10;
@@ -336,10 +383,19 @@ h3, h2 {
 
 }
 
+.calContainter.doubleLine{
+	margin-top: 20px;
+}
+
+
+
+
+
 .calContainter:hover {
  	background-color: transparent;
     
 }
+
 
 .calContainter:hover .fullCalendar {
  fill: white;
@@ -347,11 +403,31 @@ h3, h2 {
   animation: none;
 }
 
-
-  
+.calContainter:hover .calDate {
+  color: #d57f2a;
+  transform: none;
+  animation: none;
 }
 
-@media only screen and (max-width: 347px) and (min-width: 10px){
+
+.fullCalendar{
+	fill: #d57f2a;
+	margin-left: -2px;
+}
+
+.calDate{
+	color: #f1f1f1;
+	margin-top: -25px;
+	margin-left: 1px;
+	font-size: .85em;
+	transition: .75s;
+}
+
+
+
+}
+
+@media only screen and (max-width: 348px) and (min-width: 10px){
 
 	#menu{
     	 display: flex;
@@ -365,8 +441,6 @@ h3, h2 {
     	right: 0%;
     	width: 100%;
     	line-height: 5px;
-
-
     }
 
      #map{
@@ -374,14 +448,10 @@ h3, h2 {
     	height: 275px;
     }
 
-   
-
-
     .menuItem{
     	margin-right: 2%;
     	width: 100%;
     	height: 50px;
-
     }
 
     .calContainter {
@@ -393,8 +463,8 @@ h3, h2 {
 	  padding-left: 20px;
 	  margin-left: -5%;
 	  margin-right: -20px;
-	  /*background-color: #f1f1f1;
-	  border-radius: 50%;*/
+	  background-color: transparent;
+	  /*border-radius: 50%;*/
 	  transition: .75s;
 	  -webkit-transition: .75s; /* Safari */
 	  z-index: 10;
@@ -403,5 +473,42 @@ h3, h2 {
 
 	}
 
+		
+	.fullCalendar{
+		fill: #f1f1f1;
+	}
 
+	.calDate{
+		color: #d57f2a;
+		margin-top: -15px;
+		margin-left: 5px;
+	}
+
+	.calContainter.doubleLine{
+	  margin-top: 5px;
+	}
+
+}
+
+#invalidTimeMessage {
+	color: red;
+	font-size: large;
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	font-family: 'Lato', sans-serif;
+}
+
+#invalidTimeMessage a {
+	color: red;
+}
+
+#invalidTimeDiv {
+	background-color: rgba(255, 255, 255, 0.85);
+	text-align: center;
+
+	/*-webkit-backdrop-filter: blur(5px);
+    -backdrop-filter: blur(5px);
+    filter: saturate(100%);*/
 }
