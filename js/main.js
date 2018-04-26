@@ -63,7 +63,7 @@ if(currRoute === 0) {
 }
 
 // set date on calendar icon
-$(".calDate").html(date.getUTCDate());
+$(".calDate").html(date.getDate());
 
 // if today is Saturday, enable Metro Commuter (Weekend) and Local (Saturday)
 // if today is not Saturday, enable Metro Commuter (Weekday), County Line, 
