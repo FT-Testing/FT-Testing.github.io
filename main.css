@@ -60,6 +60,14 @@ h3, h2 {
 	margin-top: 10px;
 	color: white;
 	font-family: 'Lato', sans-serif;
+
+	-webkit-user-select: none; /* Chrome/Safari */        
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+ */
+
+	/* Rules below not implemented in browsers yet */
+	-o-user-select: none;
+	user-select: none;
 }
 
 .menuItem:not(.clickable) {
@@ -313,6 +321,7 @@ h3, h2 {
     	right: 0%;
     	width: 100%;
     	line-height: 20px;
+    	margin-bottom: 30px;
 
 
     }
@@ -322,6 +331,7 @@ h3, h2 {
 
     .menuItem{
     	margin-right: 2%;
+    	margin-bottom: -.5%;
     	width: 36.5%;
     	height: 100px;
 
@@ -367,7 +377,7 @@ h3, h2 {
 .calContainter {
   position: absolute;
   width: 44.5px;
-  height: 40.5px;
+  height: 35.5px;
   margin-top: 40px;
   padding-top: 15px;
   padding-left: 13px;
@@ -417,7 +427,7 @@ h3, h2 {
 
 .calDate{
 	color: #f1f1f1;
-	margin-top: -25px;
+	margin-top: -23px;
 	margin-left: 1px;
 	font-size: .85em;
 	transition: .75s;
