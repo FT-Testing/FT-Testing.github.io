@@ -1,4 +1,4 @@
-# FT-Testing.github.io
+# [FT-Testing.github.io](https://ft-testing.github.io)
 
 
 ### What Am I?
@@ -15,5 +15,5 @@ Firebase at scheduled intervals.
 ### Who Created Me?
 I was built by a team of students at [Washington & Jefferson College](http://www.washjeff.edu/).
 
-**Developed by Jordan Bechek**<br>
-**Designed and styled by Christopher Frydryck**
+**Developed by [Jordan Bechek](https://jbechek.github.io/)**<br>
+**Designed and styled by [Christopher Frydryck](https://www.christopherfrydryck.cf/)**
